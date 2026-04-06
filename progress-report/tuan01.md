@@ -33,6 +33,6 @@
 
 ## 4. Link GitHub repository
 
-[Điền link repo của bạn]
+https://github.com/tungnqt031291/cn-dx23tt9-nguyenquocthongtung-diendansinhvien/
 
 ## 5. Nhận xét của GVHD (để trống)
