@@ -1,0 +1,39 @@
+# BÁO CÁO TIẾN ĐỘ TUẦN 2
+
+- Họ tên sinh viên: Nguyễn Quốc Thông Tùng
+- Mã số sinh viên: 170123046
+- Lớp: DX23TT9
+- Tên đồ án: Xây dựng diễn đàn sinh viên
+- Giảng viên hướng dẫn: Nguyễn Hoàng Duy Thiện
+- Tuần báo cáo: từ 06/04/2026 đến 12/04/2026
+
+---
+
+## 1. Công việc đã hoàn thành trong tuần
+
+- Mời GVHD làm collaborator
+- Đã viết được nội dung: [MỞ ĐẦU / Chương 1 / Chương 2 / ...]
+- Upload file `.docx` vào `thesis/doc/`, file `.pdf` vào `thesis/pdf/`
+- Cập nhật tài liệu tham khảo vào `thesis/refs/`
+- Commit với message: `update tuan 2`
+- Cập nhật `README.md` (thay đổi về cài đặt, chạy thử)
+- Bổ sung code / dữ liệu vào `src/` hoặc `setup/`
+
+## 2. Số lần commit trong tuần
+
+- Lần 1: [ngày] – nội dung: `...`
+- Lần 2: [ngày] – nội dung: `...`
+- (thêm nếu cần)
+
+## 3. Khó khăn / vướng mắc
+
+- Chưa tìm đủ tài liệu cho phần lý thuyết.
+- Code chạy bị lỗi khi triển khai chức năng X.
+
+## 4. Kế hoạch tuần tới
+
+- Viết tiếp chương tiếp theo: [...]
+- Hoàn thiện phần [...]
+- Commit đều đặn, tránh bỏ sót tuần.
+
+## 5. Nhận xét của GVHD (để trống)
