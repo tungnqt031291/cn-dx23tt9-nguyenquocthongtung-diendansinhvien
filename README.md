@@ -1,10 +1,10 @@
 # Đồ án chuyên ngành "Diễn Đàn Sinh Viên" trên nền tảng Flarum
 
-**Mã đồ án:** cn-dx23tt9-nguyenquocthongtung-diendansinhvien
-**Sinh viên thực hiện:** Nguyễn Quốc Thông Tùng
-**MSSV:** 170123046
-**Lớp:** DX23TT9
-**Giảng viên hướng dẫn:** ThS. Nguyễn Hoàng Duy Thiện
+- **Mã đồ án:** cn-dx23tt9-nguyenquocthongtung-diendansinhvien
+- **Sinh viên thực hiện:** Nguyễn Quốc Thông Tùng
+- **MSSV:** 170123046
+- **Lớp:** DX23TT9
+- **Giảng viên hướng dẫn:** ThS. Nguyễn Hoàng Duy Thiện
 
 ---
 
@@ -39,7 +39,7 @@
 
 ---
 
-## 🏗️ Kiến Trúc
+## Kiến Trúc
 
 ```
 ┌─────────────────────────────────────────────────────┐
@@ -64,7 +64,7 @@
 
 ---
 
-## 📦 Yêu Cầu
+## Yêu Cầu
 
 - **Docker** ≥ 24.0
 - **Docker Compose** ≥ 2.0 (plugin, không phải `docker-compose` cũ)
@@ -73,7 +73,7 @@
 
 ---
 
-## 🚀 Bắt Đầu Nhanh
+## Bắt Đầu Nhanh
 
 ### 1. Clone / tải về dự án
 
