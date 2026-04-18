@@ -22,9 +22,7 @@
 
 ## 2. Số lần commit trong tuần
 
-- Lần 1 (18/04): `add chapter 2 draft`
-- Lần 2 (20/04): `add docker-compose and nginx config`
-- Lần 3 (22/04): `install vietnamese language extension`
+- Lần 1 (18/04): `fix lỗi 404`
 
 ## 3. Khó khăn / vướng mắc
 
