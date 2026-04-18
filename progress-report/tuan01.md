@@ -1,11 +1,11 @@
 # BÁO CÁO TIẾN ĐỘ TUẦN 1
 
-- Họ tên sinh viên: Nguyễn Quốc Thông Tùng
-- Mã số sinh viên: 170123046
-- Lớp: DX23TT9
-- Tên đồ án: Xây dựng diễn đàn sinh viên
-- Giảng viên hướng dẫn: Nguyễn Hoàng Duy Thiện
-- Tuần báo cáo: từ 29/03/2026 đến 05/04/2026
+- **Họ tên sinh viên:** Nguyễn Quốc Thông Tùng
+- **Mã số sinh viên:** 170123046
+- **Lớp:** DX23TT9
+- **Tên đồ án:** Xây dựng diễn đàn sinh viên
+- **Giảng viên hướng dẫn:** ThS Nguyễn Hoàng Duy Thiện
+- **Tuần báo cáo:** từ 29/03/2026 đến 05/04/2026
 
 ---
 

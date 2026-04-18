@@ -1,0 +1,18 @@
+# Môi trường — KHÔNG bao giờ commit!
+.env
+
+# Backup
+backups/
+
+# SSL certs
+nginx/ssl/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Log
+*.log

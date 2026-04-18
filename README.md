@@ -39,83 +39,279 @@
 
 ---
 
-## Cấu trúc thư mục trong repository
+## 🏗️ Kiến Trúc
 
-flarum-forum/
-├── README.md # Hướng dẫn chung
-├── docker-compose.yml # (nếu dùng Docker)
-├── setup/ # Script cài đặt, dữ liệu mẫu
-├── src/ # Mã nguồn tùy chỉnh (extension, theme)
-├── thesis/ # Tài liệu đồ án
-│ ├── doc/ # File .docx
-│ ├── pdf/ # File .pdf
-│ ├── abs/ # Slide báo cáo (.ppt, .pptx)
-│ └── refs/ # Tài liệu tham khảo (đặt tên theo chuẩn IEEE)
-├── progress-report/ # Báo cáo tiến độ tuần (bắt buộc)
-└── soft/ # Công cụ hỗ trợ (nếu có)
+```
+┌─────────────────────────────────────────────────────┐
+│                    Internet / Browser                │
+└──────────────────────────┬──────────────────────────┘
+                           │ :80 / :443
+┌──────────────────────────▼──────────────────────────┐
+│                  Nginx (Reverse Proxy)               │
+│            Static assets · Gzip · SSL               │
+└──────────────────────────┬──────────────────────────┘
+                           │ FastCGI :9000
+┌──────────────────────────▼──────────────────────────┐
+│                   Flarum (PHP-FPM)                   │
+│         Forum engine · Extensions · Queue           │
+└──────────┬───────────────────────────┬──────────────┘
+           │                           │
+┌──────────▼──────────┐   ┌────────────▼─────────────┐
+│   MariaDB 10.11     │   │      Redis 7             │
+│   (Database)        │   │  (Cache / Sessions)      │
+└─────────────────────┘   └──────────────────────────┘
+```
 
 ---
 
-## Hướng dẫn cài đặt (không dùng Docker)
+## 📦 Yêu Cầu
 
-### 1. Yêu cầu hệ thống
+- **Docker** ≥ 24.0
+- **Docker Compose** ≥ 2.0 (plugin, không phải `docker-compose` cũ)
+- RAM: tối thiểu **1 GB** (khuyến nghị 2 GB)
+- Disk: tối thiểu **5 GB** trống
 
-- PHP ≥ 7.4 (các extension: curl, dom, gd, json, mbstring, openssl, pdo_mysql, tokenizer, zip)
-- MySQL ≥ 5.7 hoặc MariaDB ≥ 10.2
-- Composer
-- Web server (Nginx / Apache)
+---
 
-### 2. Các bước cài đặt
+## 🚀 Bắt Đầu Nhanh
 
-```bash
-# Tải mã nguồn Flarum
-composer create-project flarum/flarum .
-
-# Cấu hình database (tạo database và user tương ứng)
-# Thiết lập quyền truy cập file
-chmod -R 755 storage assets
-
-# Truy cập domain đã cấu hình và hoàn tất cài đặt qua web installer
-```
-
-### 3. Cấu hình thêm
-
-Bật chế độ debug (khi phát triển)
-
-Cài đặt extension hỗ trợ xác thực email sinh viên (ví dụ: flarum-lang/english, fof/oauth)
-
-Tùy chỉnh giao diện cơ bản (logo, màu sắc, CSS)
-
-## Hướng dẫn cài đặt bằng Docker (khuyến khích)
-
-### 1. Yêu cầu
-
-Docker + Docker Compose
-
-### 2. Các bước
+### 1. Clone / tải về dự án
 
 ```bash
-# Clone repository
-git clone https://github.com/[your-username]/[repo-name].git
-cd [repo-name]
-
-# Khởi động container
-docker-compose up -d
-
-# Truy cập http://localhost:8080 để hoàn tất cài đặt
-📌 File docker-compose.yml đã được cấu hình sẵn với Flarum + MySQL + Nginx (xem trong thư mục setup/).
+git clone https://github.com/tungnqt031291/cn-dx23tt9-nguyenquocthongtung-diendansinhvien
+cd cn-dx23tt9-nguyenquocthongtung-diendansinhvien
 ```
-# Dữ liệu thử nghiệm
 
-Trong thư mục setup/demo-data/ có file sample_discussions.sql để import dữ liệu mẫu (20 chủ đề, 50 bình luận) phục vụ chạy thử nghiệm và báo cáo.
+### 2. Khởi tạo cấu hình
+
+```bash
+./scripts/manage.sh setup
+```
+
+Script sẽ tạo file `.env` từ `.env.example`.
+
+### 3. Chỉnh sửa `.env`
+
+```bash
+nano .env
+```
+
+Bắt buộc thay đổi:
+
+| Biến | Mô tả |
+|------|-------|
+| `DB_ROOT_PASSWORD` | Mật khẩu root MariaDB |
+| `DB_PASSWORD` | Mật khẩu user database |
+| `REDIS_PASSWORD` | Mật khẩu Redis |
+| `ADMIN_USER` | Tên đăng nhập admin |
+| `ADMIN_PASS` | Mật khẩu admin |
+| `ADMIN_MAIL` | Email admin |
+| `FLARUM_BASE_URL` | URL của diễn đàn (VD: `https://ddsv.edu.vn`) |
+
+### 4. Khởi động
+
+```bash
+./scripts/manage.sh start
+```
+
+Lần đầu chạy, Flarum sẽ tự động cài đặt (~2–3 phút). Truy cập:
+- **Diễn đàn:** `http://localhost`
+- **Admin panel:** `http://localhost/admin`
+
+---
+
+## Quản Lý
+
+```bash
+./scripts/manage.sh <lệnh>
+```
+
+| Lệnh | Mô tả |
+|------|-------|
+| `setup` | Khởi tạo lần đầu |
+| `start` | Khởi động tất cả dịch vụ |
+| `stop` | Dừng tất cả dịch vụ |
+| `restart` | Khởi động lại |
+| `status` | Xem trạng thái container |
+| `logs [service]` | Xem log realtime |
+| `backup` | Sao lưu DB + assets |
+| `restore <file>` | Khôi phục từ backup |
+| `update` | Cập nhật phiên bản |
+| `shell [service]` | Mở terminal vào container |
+| `flarum <cmd>` | Chạy Flarum CLI |
+
+### Ví dụ thực tế
+
+```bash
+# Xem log Flarum
+./scripts/manage.sh logs flarum
+
+# Backup hàng ngày
+./scripts/manage.sh backup
+
+# Restore từ backup
+./scripts/manage.sh restore backups/20240101_120000/database.sql
+
+# Chạy migration sau khi cài extension
+./scripts/manage.sh flarum migrate
+
+# Xóa cache
+./scripts/manage.sh flarum cache:clear
+```
+
+---
+
+## Cài Extension Phổ Biến
+
+Vào container Flarum để cài extension qua Composer:
+
+```bash
+./scripts/manage.sh shell flarum
+
+# Trong container:
+composer require flarum-lang/vietnamese     # Tiếng Việt
+composer require fof/user-bio               # Bio người dùng
+composer require fof/uploads                # Upload file
+composer require fof/moderator-notes        # Ghi chú mod
+composer require flarum/mentions            # Mention @người dùng
+composer require flarum/likes               # Like bài viết
+composer require flarum/tags                # Tags / danh mục
+composer require flarum/subscriptions       # Đăng ký nhận thông báo
+composer require flarum/sticky              # Ghim bài viết
+composer require flarum/lock                # Khóa chủ đề
+
+# Sau khi cài xong
+php flarum migrate
+php flarum cache:clear
+exit
+```
+
+---
+
+## Cài HTTPS (Production)
+
+### Dùng Certbot (Let's Encrypt)
+
+```bash
+# Cài certbot
+apt install certbot
+
+# Lấy chứng chỉ (dừng nginx trước)
+./scripts/manage.sh stop
+certbot certonly --standalone -d yourdomain.com
+
+# Sao chép cert vào thư mục ssl
+cp /etc/letsencrypt/live/yourdomain.com/fullchain.pem ./nginx/ssl/
+cp /etc/letsencrypt/live/yourdomain.com/privkey.pem ./nginx/ssl/
+```
+
+Sau đó cập nhật `nginx/conf.d/flarum.conf` thêm server block HTTPS:
+
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name yourdomain.com;
+
+    ssl_certificate     /etc/nginx/ssl/fullchain.pem;
+    ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+
+    # ... giữ nguyên các location từ cấu hình HTTP
+}
+```
+
+---
+
+## Backup Tự Động (Cron)
+
+```bash
+# Crontab — backup mỗi ngày lúc 2 giờ sáng
+crontab -e
+
+# Thêm dòng:
+0 2 * * * /path/to/dien-dan-sinh-vien/scripts/manage.sh backup >> /var/log/ddsv-backup.log 2>&1
+```
+
+---
+
+## Cấu Trúc Dự Án
+
+```
+dien-dan-sinh-vien/
+├── docker-compose.yml          # Định nghĩa services
+├── .env.example                # Mẫu biến môi trường
+├── .env                        # (tự tạo, không commit!)
+├── .gitignore
+├── README.md
+├── nginx/
+│   ├── nginx.conf              # Cấu hình Nginx chính
+│   └── conf.d/
+│       └── flarum.conf         # Virtual host Flarum
+├── flarum-config/
+│   └── config.php              # Override config Flarum
+├── scripts/
+│   └── manage.sh               # Script quản lý
+└── backups/                    # Thư mục backup (tự tạo)
+```
+
+---
+
+## Xử Lý Sự Cố
+
+### Flarum không khởi động được
+
+```bash
+./scripts/manage.sh logs flarum
+```
+
+### Lỗi kết nối database
+
+```bash
+# Kiểm tra db đã healthy chưa
+./scripts/manage.sh status
+
+# Xem log db
+./scripts/manage.sh logs db
+```
+
+### Reset hoàn toàn (mất dữ liệu)
+
+```bash
+docker compose down -v    # Xóa cả volumes!
+docker compose up -d
+```
+
+### Phân quyền file
+
+```bash
+./scripts/manage.sh shell flarum
+chown -R www-data:www-data /var/www/html/storage
+chown -R www-data:www-data /var/www/html/public/assets
+chmod -R 775 /var/www/html/storage
+```
+
+---
+
+## .gitignore
+
+```
+.env
+backups/
+nginx/ssl/
+```
+
+---
+
+## Giấy Phép
+
+MIT — Tự do sử dụng cho mục đích cá nhân và thương mại.
 
 # Thông tin liên lạc
 
 Email sinh viên: tungnqt031291@sv-onuni.edu.vn
 
-GitHub: [https://github.com/nguyenvana]
+GitHub: https://github.com/tungnqt031291
 
-GVHD: [ts.tranvanb@university.edu.vn]
+GVHD: 
 
 Repository chính của đồ án: [https://github.com/your-username/flarum-forum] (sẽ fork về bộ môn khi kết thúc)
 
