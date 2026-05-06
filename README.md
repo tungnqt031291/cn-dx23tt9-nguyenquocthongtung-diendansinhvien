@@ -117,6 +117,11 @@ Bắt buộc thay đổi:
 Lần đầu chạy, Flarum sẽ tự động cài đặt (~2–3 phút). Truy cập:
 - **Diễn đàn:** `http://localhost`
 - **Admin panel:** `http://localhost/admin`
+- **Tài khoản admin mặc định:**
+
+| Username | Password |
+|------|-------|
+| flarum | flarum |
 
 ---
 
@@ -311,7 +316,7 @@ Email sinh viên: tungnqt031291@sv-onuni.edu.vn
 
 GitHub: https://github.com/tungnqt031291
 
-GVHD: 
+GVHD: thiennhd@tvu.edu.vn
 
 Repository chính của đồ án: [https://github.com/your-username/flarum-forum] (sẽ fork về bộ môn khi kết thúc)
 

@@ -22,7 +22,7 @@
 
 ## 2. Số lần commit trong tuần
 
-- Lần 1 (18/04): `fix lỗi 404`
+- Lần 1: `fix lỗi 404`
 
 ## 3. Khó khăn / vướng mắc
 
