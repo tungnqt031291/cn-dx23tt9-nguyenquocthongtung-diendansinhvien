@@ -5,7 +5,7 @@
 - **Lớp:** DX23TT9
 - **Tên đồ án:** Xây dựng diễn đàn sinh viên
 - **Giảng viên hướng dẫn:** ThS Nguyễn Hoàng Duy Thiện
-- **Tuần báo cáo:** từ 04/05 đến 10/05/2026
+- **Tuần báo cáo:** từ 27/04 đến 03/05/2026
 
 ---
 
